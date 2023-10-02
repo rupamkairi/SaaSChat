@@ -1,0 +1,22 @@
+{
+  "name": "saaschat-api",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "bun:dev": "bun src/index.ts",
+    "node:dev": "nodemon src/index.js",
+    "dev": "npm run node:dev"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.4.0",
+    "@fastify/websocket": "^8.2.0",
+    "fastify": "^4.23.2",
+    "nodemon": "^3.0.1"
+  }
+}
