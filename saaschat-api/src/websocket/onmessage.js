@@ -1,4 +1,9 @@
-import { getUsers } from "../database/models/users.js";
+import {
+  findUsers,
+  findUserById,
+  updateUserById,
+  deleteUserById,
+} from "../database/models/users.js";
 import { actions } from "../utils/actions.js";
 import { widgetConnect } from "./handlers/open.js";
 
@@ -15,8 +20,7 @@ export async function onmessage(connection, event) {
 
   let result;
 
-  const users = await getUsers();
-  console.log(users, "-> db users");
+  console.log(await deleteUserById());
 
   if (segments[0] == actions.connect) {
     switch (segments[1]) {
