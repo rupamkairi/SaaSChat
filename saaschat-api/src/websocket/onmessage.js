@@ -1,6 +1,6 @@
+import { getUsers } from "../database/models/users.js";
 import { actions } from "../utils/actions.js";
 import { widgetConnect } from "./handlers/open.js";
-import { client } from "../database/cassandra.js";
 
 /**
  * Represents a book.
@@ -15,7 +15,8 @@ export async function onmessage(connection, event) {
 
   let result;
 
-  console.log(client.getState(), "Cassandra Message");
+  const users = await getUsers();
+  console.log(users, "-> db users");
 
   if (segments[0] == actions.connect) {
     switch (segments[1]) {
