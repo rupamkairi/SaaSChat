@@ -1,4 +1,5 @@
 import {
+  createUser,
   findUsers,
   findUserById,
   updateUserById,
@@ -20,7 +21,8 @@ export async function onmessage(connection, event) {
 
   let result;
 
-  console.log(await deleteUserById());
+  // console.log(await findUsers());
+  console.log(await findUserById("e65a6d16-69a5-11ee-8c99-0242ac120002"));
 
   if (segments[0] == actions.connect) {
     switch (segments[1]) {

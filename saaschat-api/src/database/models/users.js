@@ -1,5 +1,6 @@
-import { v4 } from "uuid";
+import { parse, stringify, v4 } from "uuid";
 import { client } from "../cassandra.js";
+import qb, { qbr, qbs } from "../querybuilder.js";
 
 export async function createUser() {
   try {
@@ -15,10 +16,15 @@ export async function createUser() {
 
 export async function findUsers() {
   try {
-    const query = "SELECT * FROM users";
-    let result = await client.execute(query, []);
-    result = result.rows.flat();
-    return result;
+    // const query = "SELECT * FROM users";
+    // let result = await client.execute(query, []);
+    // result = result.rows.flat();
+    // return result;
+
+    const sql = qb.select("*").from("users").toSQL();
+    console.log(sql);
+
+    return [];
   } catch (error) {
     console.log("findUsers", error);
     client.shutdown();
@@ -27,9 +33,7 @@ export async function findUsers() {
 
 export async function findUserById(id) {
   try {
-    const query = "SELECT * FROM users WHERE id = ?";
-    let result = await client.execute(query, [id]);
-    result = result.rows.flat();
+    let result = await qbr(qb.select("*").from("users").where("id", "=", id));
     return result;
   } catch (error) {
     console.log("findUserById", error);
