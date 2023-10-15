@@ -13,9 +13,7 @@ app.register(async function (fastify) {
     connection.socket.onopen = (event) => {
       console.log("onOpen", event);
     };
-
     connection.socket.onmessage = (event) => onmessage(connection, event);
-
     connection.socket.onclose = (event) => {
       console.log("onClose");
     };

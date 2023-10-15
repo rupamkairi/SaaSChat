@@ -5,7 +5,8 @@
   "scripts": {
     "bun:dev": "bun src/index.ts",
     "node:dev": "nodemon src/index.js",
-    "dev": "npm run node:dev"
+    "dev": "npm run node:dev",
+    "start": "node src/index.js"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.5",
