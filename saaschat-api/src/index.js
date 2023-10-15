@@ -2,6 +2,10 @@ import fastify from "fastify";
 import fastifyWebsocket from "@fastify/websocket";
 import { fastifyCors } from "@fastify/cors";
 import { onmessage } from "./websocket/onmessage.js";
+import { configDotenv } from "dotenv";
+configDotenv();
+
+const PORT = process.env.PORT || 10000;
 
 const app = fastify({ logger: true, disableRequestLogging: true });
 
@@ -23,8 +27,8 @@ app.register(async function (fastify) {
 // port 10000 for rednder.com
 // port 4003 for localhost
 app.ready().then(() =>
-  app.listen({ port: 10000 }, (err) => {
+  app.listen({ port: PORT }, (err) => {
     if (err) return;
-    console.log("started on http://localhost:4003");
+    console.log(`started on http://localhost:${PORT}`);
   })
 );
