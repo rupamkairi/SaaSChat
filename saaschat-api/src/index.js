@@ -20,4 +20,11 @@ app.register(async function (fastify) {
   });
 });
 
-app.ready().then(() => app.listen({ port: 4003 }));
+// port 10000 for rednder.com
+// port 4003 for localhost
+app.ready().then(() =>
+  app.listen({ port: 10000 }, (err) => {
+    if (err) return;
+    console.log("started on http://localhost:4003");
+  })
+);
