@@ -25,7 +25,7 @@ app.register(async function (fastify) {
 // port 10000 for render.com
 // port 4003 for localhost
 app.ready().then(() =>
-  app.listen({ port: process.env.PORT }, (err) => {
+  app.listen({ host: process.env.HOST, port: process.env.PORT }, (err) => {
     if (err) return;
     console.log(`⚡️Fastify is running on`, process.env.PORT);
   })
