@@ -1,5 +1,5 @@
-// import { configDotenv } from "dotenv";
-// configDotenv();
+import { config } from "dotenv";
+config();
 
 import fastify from "fastify";
 import fastifyWebsocket from "@fastify/websocket";
@@ -9,7 +9,7 @@ import { onclose } from "./websocket/onclose.js";
 import { onmessage } from "./websocket/onmessage.js";
 import apiRouter from "./router/index.js";
 
-const app = fastify({ logger: true });
+const app = fastify({ logger: false });
 
 app.register(apiRouter);
 app.register(fastifyCors);
@@ -27,6 +27,6 @@ app.register(async function (fastify) {
 app.ready().then(() =>
   app.listen({ port: process.env.PORT }, (err) => {
     if (err) return;
-    console.log(`⚡️Fastify is running`);
+    console.log(`⚡️Fastify is running on`, process.env.PORT);
   })
 );
