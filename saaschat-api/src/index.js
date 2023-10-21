@@ -1,34 +1,34 @@
-import fastify from "fastify";
-import fastifyWebsocket from "@fastify/websocket";
-import { fastifyCors } from "@fastify/cors";
-import { onmessage } from "./websocket/onmessage.js";
 import { configDotenv } from "dotenv";
 configDotenv();
 
+import fastify from "fastify";
+import fastifyWebsocket from "@fastify/websocket";
+import { fastifyCors } from "@fastify/cors";
+import { onopen } from "./websocket/onopen.js";
+import { onclose } from "./websocket/onclose.js";
+import { onmessage } from "./websocket/onmessage.js";
+import apiRouter from "./router/index.js";
+
 const PORT = process.env.PORT || 10000;
 
-const app = fastify({ logger: true, disableRequestLogging: true });
+const app = fastify({ logger: true });
 
+app.register(apiRouter);
 app.register(fastifyCors);
 app.register(fastifyWebsocket);
-
 app.register(async function (fastify) {
   fastify.get("/ws", { websocket: true }, (connection, req) => {
-    connection.socket.onopen = (event) => {
-      console.log("onOpen", event);
-    };
+    connection.socket.onopen = (event) => onopen(event);
+    connection.socket.onclose = (event) => onclose(event);
     connection.socket.onmessage = (event) => onmessage(connection, event);
-    connection.socket.onclose = (event) => {
-      console.log("onClose");
-    };
   });
 });
 
-// port 10000 for rednder.com
+// port 10000 for render.com
 // port 4003 for localhost
 app.ready().then(() =>
   app.listen({ port: PORT }, (err) => {
     if (err) return;
-    console.log(`started on http://localhost:${PORT}`);
+    console.log(`⚡️ Fastify is running at http://localhost:${PORT}`);
   })
 );

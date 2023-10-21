@@ -9,7 +9,7 @@ import { actions } from "../utils/actions.js";
 import { widgetConnect } from "./handlers/open.js";
 
 /**
- * Represents a book.
+ * Description of the Function
  * @param {import("@fastify/websocket").SocketStream} connection,
  * @param {MessageEvent} event
  */
