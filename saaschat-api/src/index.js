@@ -1,5 +1,5 @@
-import { configDotenv } from "dotenv";
-configDotenv();
+// import { configDotenv } from "dotenv";
+// configDotenv();
 
 import fastify from "fastify";
 import fastifyWebsocket from "@fastify/websocket";
@@ -8,8 +8,6 @@ import { onopen } from "./websocket/onopen.js";
 import { onclose } from "./websocket/onclose.js";
 import { onmessage } from "./websocket/onmessage.js";
 import apiRouter from "./router/index.js";
-
-const PORT = process.env.PORT || 10000;
 
 const app = fastify({ logger: true });
 
@@ -27,8 +25,8 @@ app.register(async function (fastify) {
 // port 10000 for render.com
 // port 4003 for localhost
 app.ready().then(() =>
-  app.listen({ port: PORT }, (err) => {
+  app.listen({ port: process.env.PORT }, (err) => {
     if (err) return;
-    console.log(`⚡️ Fastify is running at http://localhost:${PORT}`);
+    console.log(`⚡️Fastify is running`);
   })
 );
