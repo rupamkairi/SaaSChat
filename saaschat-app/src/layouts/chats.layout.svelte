@@ -1,6 +1,21 @@
+<script>
+	import Icon from '@iconify/svelte';
+	import { infosToggle } from '../store/layouts.state';
+</script>
+
 <div class="bg-slate-50 h-screen flex-grow shadow-md flex flex-col">
 	<div class="py-4 px-3 border-b bg-white">
-		<h2 class="font-bold">(207) 555-0199</h2>
+		<div class="flex justify-between items-center">
+			<h2 class="font-bold">(207) 555-0199</h2>
+			<button
+				class="p-1.5 hover:bg-slate-100 rounded shadow"
+				on:click={() => {
+					infosToggle();
+				}}
+			>
+				<Icon icon="solar:sidebar-minimalistic-outline" />
+			</button>
+		</div>
 	</div>
 	<div class="flex-grow flex flex-col-reverse overflow-scroll">
 		<div>
@@ -9,7 +24,7 @@
 				<div class="flex flex-row gap-3 px-3 my-2">
 					<div class="place-self-end w-8">
 						<img
-							class="rounded-full shadow"
+							class="min-w-[2rem] min-h-[2rem] max-w-full rounded-full shadow"
 							src="https://randomuser.me/api/portraits/lego/1.jpg"
 							alt=""
 						/>
@@ -36,8 +51,8 @@
 				<div class="flex flex-row-reverse gap-3 px-3 my-2">
 					<div class="place-self-end w-8">
 						<img
-							class="rounded-full shadow"
-							src="https://randomuser.me/api/portraits/lego/1.jpg"
+							class="min-w-[2rem] min-h-[2rem] max-w-full rounded-full shadow"
+							src="https://randomuser.me/api/portraits/lego/2.jpg"
 							alt=""
 						/>
 					</div>

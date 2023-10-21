@@ -1,6 +1,21 @@
+<script>
+	import Icon from '@iconify/svelte';
+	import { sidebarToggle } from '../store/layouts.state';
+</script>
+
 <div class="bg-white border-x h-screen flex-grow shadow-md flex flex-col overflow-scroll">
 	<div class="py-4 px-3 border-b bg-white">
-		<h2 class="font-bold">Clients</h2>
+		<div class="flex justify-between items-center">
+			<h2 class="font-bold">Clients</h2>
+			<button
+				class="p-1.5 hover:bg-slate-100 rounded shadow"
+				on:click={() => {
+					sidebarToggle();
+				}}
+			>
+				<Icon icon="solar:sidebar-minimalistic-outline" />
+			</button>
+		</div>
 	</div>
 	<div class="my-4 mx-3">
 		<button class="px-4 py-1 bg-white rounded shadow text-sm">Active</button>
