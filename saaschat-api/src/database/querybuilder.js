@@ -23,14 +23,26 @@ export function qbs(fn) {
  */
 export async function qbr(fn) {
   const { sql, bindings } = qbs(fn);
-  let result = await client.execute(sql, bindings);
-  let rows = result.rows.flatMap((row) => {
-    return {
-      ...row,
-      id: stringify(row.get("id").buffer),
-    };
-  });
-  return rows;
+  let result = null;
+
+  try {
+    result = await client.execute(sql, bindings);
+    // console.log({ result });
+
+    let rows =
+      result?.rows?.flatMap((row) => {
+        return {
+          ...row,
+          id: stringify(row.get("id").buffer),
+        };
+      }) ??
+      (sql.includes("insert") ? true : null) ??
+      (sql.includes("update") ? true : null);
+
+    return rows;
+  } catch (error) {
+    throw error;
+  }
 }
 
 export default qb;

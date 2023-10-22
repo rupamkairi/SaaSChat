@@ -1,4 +1,13 @@
-import { findUsers } from "../../../database/models/users.js";
+import {
+  createUser,
+  findUsers,
+  updateUserById,
+} from "../../../database/models/users.js";
+
+export async function usersCreate() {
+  const user = await createUser();
+  return user;
+}
 
 export async function usersGetAll() {
   try {
@@ -8,4 +17,10 @@ export async function usersGetAll() {
   } catch (error) {
     throw error;
   }
+}
+
+export async function usersUpdateById(data) {
+  let { id, ...update } = data;
+  const user = await updateUserById(id, update);
+  return user;
 }

@@ -1,6 +1,10 @@
 import { actions } from "../utils/actions.js";
 import { dashboardConnect, widgetConnect } from "./handlers/open.js";
-import { usersGetAll } from "./handlers/users/users.js";
+import {
+  usersCreate,
+  usersGetAll,
+  usersUpdateById,
+} from "./handlers/users/users.js";
 
 /**
  * Description of the Function
@@ -9,7 +13,7 @@ import { usersGetAll } from "./handlers/users/users.js";
  */
 export async function onmessage(connection, event) {
   const query = JSON.parse(event.data);
-  const { action } = query;
+  const { action, data } = query;
 
   try {
     const segments = action.split(":");
@@ -32,8 +36,16 @@ export async function onmessage(connection, event) {
 
     if (+segments[0] === actions.users) {
       switch (+segments[1]) {
+        case actions.users_create:
+          result = await usersCreate();
+          break;
+
         case actions.users_get_all:
           result = await usersGetAll();
+          break;
+
+        case actions.users_update_by_id:
+          result = await usersUpdateById(data);
           break;
 
         default:
@@ -49,6 +61,7 @@ export async function onmessage(connection, event) {
     });
     connection.socket.send(response);
   } catch (error) {
+    // console.log(Object.keys(error));
     const { code, message } = error;
     const response = JSON.stringify({
       query,

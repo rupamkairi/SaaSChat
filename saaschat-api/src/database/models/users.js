@@ -4,30 +4,28 @@ import qb, { qbr, qbs } from "../querybuilder.js";
 
 export async function createUser() {
   try {
-    const query = "";
-    let result = await client.execute(query, []);
-    result = result.rows.flat();
+    let user = {
+      id: v4(),
+      // ... Other fields goes here
+      created_at: new Date(),
+    };
+
+    let result = await qbr(qb.insert(user).into("users"));
     return result;
   } catch (error) {
     console.log("createUser", error);
+    throw error;
     client.shutdown();
   }
 }
 
 export async function findUsers() {
   try {
-    // const query = "SELECT * FROM users";
-    // let result = await client.execute(query, []);
-    // result = result.rows.flat();
-    // return result;
-
-    // const sql = qbr.select("*").from("users").toSQL();
-    // console.log(sql);
-
     let result = await qbr(qb.select("*").from("users"));
     return result;
   } catch (error) {
     console.log("findUsers", error);
+    throw error;
     client.shutdown();
   }
 }
@@ -38,18 +36,25 @@ export async function findUserById(id) {
     return result;
   } catch (error) {
     console.log("findUserById", error);
+    throw error;
     client.shutdown();
   }
 }
 
-export async function updateUserById(id) {
+export async function updateUserById(id, update) {
   try {
-    const query = "UPDATE users SET updated_at = ? WHERE id = ?";
-    let result = await client.execute(query, [new Date(), id]);
-    result = result.rows;
+    update = {
+      ...update,
+      // ... Other fields goes here
+      updated_at: new Date(),
+    };
+    let result = await qbr(
+      qb.update(update).from("users").where("id", "=", id)
+    );
     return result;
   } catch (error) {
     console.log("updateUserById", error);
+    throw error;
     client.shutdown();
   }
 }

@@ -10,5 +10,7 @@ export const actions = Object.freeze({
   dashboard_connect: 201,
   dashboard_disconnect: 299,
 
-  users_get_all: 1101,
+  users_create: 1101,
+  users_get_all: 1111,
+  users_update_by_id: 1121,
 });
