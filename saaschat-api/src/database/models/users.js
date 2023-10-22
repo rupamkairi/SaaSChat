@@ -21,10 +21,11 @@ export async function findUsers() {
     // result = result.rows.flat();
     // return result;
 
-    const sql = qb.select("*").from("users").toSQL();
-    console.log(sql);
+    // const sql = qbr.select("*").from("users").toSQL();
+    // console.log(sql);
 
-    return [];
+    let result = await qbr(qb.select("*").from("users"));
+    return result;
   } catch (error) {
     console.log("findUsers", error);
     client.shutdown();
