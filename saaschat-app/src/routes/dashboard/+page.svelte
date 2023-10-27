@@ -6,8 +6,6 @@
 	import { sidebar, infos } from '../../store/layouts.state';
 
 	// const sidebar = getContext(LayoutStateKeys.sidebar);
-
-	console.log({ sidebar, infos });
 </script>
 
 <svelte:head>

@@ -16,10 +16,10 @@ enum LayoutElementSizing {
 
 export const sidebar = writable(LayoutElementSizing.default);
 
-sidebar.set(LayoutElementSizing.default);
+// sidebar.set(LayoutElementSizing.default);
 
 sidebar.subscribe((value) => {
-	console.log(value);
+	console.log('Subscribed to sidebar', value);
 });
 
 sidebar.update((value) => value);

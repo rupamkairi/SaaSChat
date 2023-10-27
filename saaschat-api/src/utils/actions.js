@@ -13,4 +13,7 @@ export const actions = Object.freeze({
   users_create: 1101,
   users_get_all: 1111,
   users_update_by_id: 1121,
+
+  ping: 1,
+  heartbeat: 2,
 });

@@ -1,4 +1,6 @@
 import { actions } from "../utils/actions.js";
+import heartbeat from "./handlers/health/heartbeat.js";
+import pingPong from "./handlers/health/ping.js";
 import { dashboardConnect, widgetConnect } from "./handlers/open.js";
 import {
   usersCreate,
@@ -19,6 +21,20 @@ export async function onmessage(connection, event) {
     const segments = action.split(":");
 
     let result;
+
+    if (+segments[0] === actions.unknown) {
+      switch (+segments[1]) {
+        case actions.ping:
+          result = await pingPong();
+          break;
+
+        case actions.heartbeat:
+          result = await heartbeat();
+          break;
+
+        default:
+      }
+    }
 
     if (+segments[0] === actions.connect) {
       switch (+segments[1]) {

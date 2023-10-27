@@ -6,4 +6,6 @@ export const client = new Client({
   localDataCenter: "datacenter1",
 });
 
-client.connect();
+try {
+  await client.connect();
+} catch (error) {}
