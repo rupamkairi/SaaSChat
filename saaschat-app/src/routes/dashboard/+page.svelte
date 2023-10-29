@@ -6,6 +6,14 @@
 	import { sidebar, infos } from '../../store/layouts.state';
 
 	// const sidebar = getContext(LayoutStateKeys.sidebar);
+	import { connector } from '../../websocket';
+
+	const ping = { action: '0:1' };
+	const heartbeat = { action: '0:2' };
+
+	connector?.ws.addEventListener('open', (event) => {
+		connector?.send(ping);
+	});
 </script>
 
 <svelte:head>

@@ -1,6 +1,12 @@
 <script>
 	import Icon from '@iconify/svelte';
 	import { sidebarToggle } from '../store/layouts.state';
+	import { listMessagesBetween } from '../utils/messages/list';
+	import { USERS } from '../utils/messages';
+
+	function handleChangeChat({ sender_id = '' }) {
+		listMessagesBetween({ receiver_id: USERS.genesis, sender_id });
+	}
 </script>
 
 <div class="bg-white border-x h-screen flex-grow shadow-md flex flex-col overflow-scroll">
@@ -30,12 +36,15 @@
 						alt=""
 					/>
 				</div>
-				<div class="pb-2">
-					<p class="text-sm font-semibold">(207) 555-0199</p>
+				<button
+					class="pb-2 text-start"
+					on:click={() => handleChangeChat({ sender_id: USERS.customer1 })}
+				>
+					<p class="text-sm font-semibold">Customer 1</p>
 					<p class="text-xs text-gray-500">
 						Lorem ipsum dolor sit consectetur adipisicing doloremque...
 					</p>
-				</div>
+				</button>
 			</div>
 			<div class="flex gap-3 px-3 my-2">
 				<div class="w-16">
@@ -45,12 +54,15 @@
 						alt=""
 					/>
 				</div>
-				<div class="">
-					<p class="text-sm font-semibold">(207) 555-0199</p>
+				<button
+					class="pb-2 text-start"
+					on:click={() => handleChangeChat({ sender_id: USERS.customer2 })}
+				>
+					<p class="text-sm font-semibold">Customer 2</p>
 					<p class="text-xs text-gray-500">
 						Lorem ipsum dolor sit consectetur adipisicing doloremque...
 					</p>
-				</div>
+				</button>
 			</div>
 			<div class="h-screen" />
 			<div class="flex gap-3 px-3 my-2">

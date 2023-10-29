@@ -1,5 +1,17 @@
 <script>
 	import Icon from '@iconify/svelte';
+	import { sendMessage } from '../../utils/messages/send';
+	import { USERS } from '../../utils/messages';
+
+	let message = 'Hello World';
+
+	function handleSendMessage() {
+		sendMessage({
+			content: message,
+			receiver_id: USERS.genesis,
+			sender_id: USERS.customer2
+		});
+	}
 </script>
 
 <div>
@@ -58,10 +70,10 @@
 							<div class="h-full flex gap-1">
 								<textarea
 									class="pt-2 pb-4 text-sm flex-grow rounded border border-transparent outline-none"
-									value="Lorem ipsum dolor sit amet consectetur, adipisicing elit. In repellat laborum inventore molestias impedit enim nesciunt corrupti fugiat. Enim ducimus vel excepturi sit suscipit eos saepe similique perferendis voluptate necessitatibus."
+									bind:value={message}
 								/>
 								<div class="flex flex-col gap-2">
-									<button class="w-8 h-8 pl-1 bg-slate-200 rounded">
+									<button class="w-8 h-8 pl-1 bg-slate-200 rounded" on:click={handleSendMessage}>
 										<Icon icon="iconamoon:send-duotone" class="w-6 h-6" />
 									</button>
 									<button class="w-6 h-6 pl-1 bg-slate-200 rounded">

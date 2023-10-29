@@ -8,6 +8,7 @@ import { stringify } from "uuid";
 // although cql will not be same as sql,
 // but for most parts, that will be enuf
 const qb = knex({ client: "pg" });
+export const fn = knex({ client: "pg" }).fn;
 
 /**
  * @param {knex.Knex.QueryBuilder} fn
@@ -21,13 +22,15 @@ export function qbs(fn) {
  * @param {knex.Knex.QueryBuilder} fn
  * @returns {Promise<[]>}
  */
-export async function qbr(fn) {
-  const { sql, bindings } = qbs(fn);
+export async function qbr(fn, { filtering = false }) {
+  let { sql, bindings } = qbs(fn);
+  if (filtering) sql += " ALLOW FILTERING";
+
   let result = null;
 
   try {
+    console.log(sql);
     result = await client.execute(sql, bindings);
-    // console.log({ result });
 
     let rows =
       result?.rows?.flatMap((row) => {

@@ -1,6 +1,11 @@
 import { actions } from "../utils/actions.js";
 import heartbeat from "./handlers/health/heartbeat.js";
 import pingPong from "./handlers/health/ping.js";
+import {
+  messageGetBetween,
+  messagesGetAll,
+  messagesSend,
+} from "./handlers/messages.js";
 import { dashboardConnect, widgetConnect } from "./handlers/open.js";
 import {
   usersCreate,
@@ -20,7 +25,7 @@ export async function onmessage(connection, event) {
   try {
     const segments = action.split(":");
 
-    let result;
+    let result = null;
 
     if (+segments[0] === actions.unknown) {
       switch (+segments[1]) {
@@ -62,6 +67,25 @@ export async function onmessage(connection, event) {
 
         case actions.users_update_by_id:
           result = await usersUpdateById(data);
+          break;
+
+        default:
+          break;
+      }
+    }
+
+    if (+segments[0] === actions.messages) {
+      switch (+segments[1]) {
+        case actions.messages_send:
+          result = await messagesSend(data);
+          break;
+
+        case actions.messages_get_all:
+          result = await messagesGetAll();
+          break;
+
+        case actions.messages_get_between:
+          result = await messageGetBetween(data);
           break;
 
         default:
