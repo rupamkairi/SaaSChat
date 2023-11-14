@@ -8,6 +8,7 @@ import { onopen } from "./websocket/onopen.js";
 import { onclose } from "./websocket/onclose.js";
 import { onmessage } from "./websocket/onmessage.js";
 import apiRouter from "./router/index.js";
+import { getPgVersion } from "./drizzle/index.js";
 
 const app = fastify({ logger: false });
 
@@ -30,3 +31,5 @@ app.ready().then(() =>
     console.log(`⚡️Fastify is running on`, process.env.PORT);
   })
 );
+
+// getPgVersion();

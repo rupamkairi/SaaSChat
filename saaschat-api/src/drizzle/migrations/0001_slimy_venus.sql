@@ -1,0 +1,1 @@
+CREATE UNIQUE INDEX IF NOT EXISTS "username_unique_idx" ON "users" ("username");

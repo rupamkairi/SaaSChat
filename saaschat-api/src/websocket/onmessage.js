@@ -2,10 +2,10 @@ import { actions } from "../utils/actions.js";
 import heartbeat from "./handlers/health/heartbeat.js";
 import pingPong from "./handlers/health/ping.js";
 import {
-  messageGetBetween,
+  messagesGetBetween,
   messagesGetAll,
   messagesSend,
-} from "./handlers/messages.js";
+} from "./handlers/messages/messages.js";
 import { dashboardConnect, widgetConnect } from "./handlers/open.js";
 import {
   usersCreate,
@@ -56,8 +56,10 @@ export async function onmessage(connection, event) {
     }
 
     if (+segments[0] === actions.users) {
+      // console.log("users switch");
       switch (+segments[1]) {
         case actions.users_create:
+          // console.log("create switch");
           result = await usersCreate();
           break;
 
@@ -85,7 +87,7 @@ export async function onmessage(connection, event) {
           break;
 
         case actions.messages_get_between:
-          result = await messageGetBetween(data);
+          result = await messagesGetBetween(data);
           break;
 
         default:

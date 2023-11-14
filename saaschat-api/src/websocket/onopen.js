@@ -2,5 +2,9 @@
  * @param {MessageEvent} event
  */
 export async function onopen(event) {
-  console.log("Open");
+  try {
+    console.log("Open");
+  } catch (error) {
+    console.log(error);
+  }
 }
