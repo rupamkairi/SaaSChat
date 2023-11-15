@@ -1,5 +1,5 @@
 export const USERS = {
-	genesis: '196c12ab-5cd9-4c50-a830-45d139763fcb',
-	customer1: '2a4d5c8d-6027-4b91-96c8-ef9ffc222848',
-	customer2: 'e65a6d16-69a5-11ee-8c99-0242ac120002'
+	admin: 'eae1d553-2a98-40ad-b923-517275a33ff7',
+	customer1: '8a7ffafa-2da5-415a-8e1e-d397462e4329',
+	customer2: '5a742938-0c84-4881-a7de-8e301afd1ded'
 };

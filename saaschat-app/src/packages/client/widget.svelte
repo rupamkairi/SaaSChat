@@ -8,7 +8,7 @@
 	function handleSendMessage() {
 		sendMessage({
 			content: message,
-			receiver_id: USERS.genesis,
+			receiver_id: USERS.admin,
 			sender_id: USERS.customer2
 		});
 	}

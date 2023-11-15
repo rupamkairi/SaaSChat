@@ -77,8 +77,10 @@ export async function onmessage(connection, event) {
     }
 
     if (+segments[0] === actions.messages) {
+      console.log("messages switch");
       switch (+segments[1]) {
         case actions.messages_send:
+          console.log("send switch");
           result = await messagesSend(data);
           break;
 
@@ -87,6 +89,7 @@ export async function onmessage(connection, event) {
           break;
 
         case actions.messages_get_between:
+          console.log("get between switch");
           result = await messagesGetBetween(data);
           break;
 

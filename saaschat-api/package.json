@@ -6,7 +6,8 @@
     "bun:dev": "bun --watch src/index.js",
     "nodemon": "nodemon src/index.js",
     "dev": "npm run nodemon",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "studio": "drizzle-kit studio"
   },
   "devDependencies": {
     "@types/uuid": "^9.0.5",

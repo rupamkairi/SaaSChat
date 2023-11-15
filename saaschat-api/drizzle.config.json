@@ -4,6 +4,7 @@
   "driver": "pg",
   "dbCredentials": {
     "user": "rupamkairi",
+    "host": "ep-dry-waterfall-86814699.ap-southeast-1.aws.neon.tech",
     "database": "saas-chat",
     "ssl": true
   },

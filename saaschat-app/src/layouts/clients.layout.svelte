@@ -5,7 +5,7 @@
 	import { USERS } from '../utils/messages';
 
 	function handleChangeChat({ sender_id = '' }) {
-		listMessagesBetween({ receiver_id: USERS.genesis, sender_id });
+		listMessagesBetween({ receiver_id: USERS.admin, sender_id });
 	}
 </script>
 

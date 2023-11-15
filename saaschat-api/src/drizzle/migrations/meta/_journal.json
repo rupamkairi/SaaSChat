@@ -15,6 +15,20 @@
       "when": 1699998632153,
       "tag": "0001_slimy_venus",
       "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1700027525632,
+      "tag": "0002_sweet_diamondback",
+      "breakpoints": false
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1700028519423,
+      "tag": "0003_green_viper",
+      "breakpoints": false
     }
   ]
 }

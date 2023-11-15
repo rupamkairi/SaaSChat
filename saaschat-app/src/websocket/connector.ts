@@ -1,3 +1,5 @@
+import { onmessage } from './onmessage';
+
 let instance: Connector | null;
 let _nonce = crypto.randomUUID();
 export default class Connector {
@@ -15,6 +17,10 @@ export default class Connector {
 
 		Connector.ws.addEventListener('open', (event) => {
 			console.log('Open', event);
+		});
+
+		Connector.ws.addEventListener('message', (event) => {
+			onmessage(event);
 		});
 
 		Connector.ws.addEventListener('error', (event) => {
