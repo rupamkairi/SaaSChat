@@ -2,6 +2,10 @@
 	import Icon from '@iconify/svelte';
 	import { sendMessage } from '../../utils/messages/send';
 	import { USERS } from '../../utils/messages';
+	import { messages, loadInitialMessages } from './store/messages.store';
+	import { onMount } from 'svelte';
+	import { loadMessagesBetween } from '../../utils/messages/load';
+	import { connector } from '../../websocket';
 
 	let message = 'Hello World';
 
@@ -12,6 +16,16 @@
 			sender_id: USERS.customer2
 		});
 	}
+
+	onMount(() => {
+		const newMessages = [{ content: 'Hello' }];
+		connector?.ws.addEventListener('open', (event) => {
+			loadMessagesBetween(
+				{ receiver_id: USERS.admin, sender_id: USERS.customer2 },
+				{ from: 'widget' }
+			);
+		});
+	});
 </script>
 
 <div>
@@ -64,6 +78,7 @@
 										I'd like to learn about SaaSChat
 									</div>
 								</div>
+								<div><pre class="text-xs">{JSON.stringify($messages, null, 2)}</pre></div>
 							</div>
 						</div>
 						<div class="max-h-24 h-full">

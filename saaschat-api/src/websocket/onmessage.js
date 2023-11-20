@@ -20,7 +20,7 @@ import {
  */
 export async function onmessage(connection, event) {
   const query = JSON.parse(event.data);
-  const { action, data } = query;
+  const { action, data, from } = query;
 
   try {
     const segments = action.split(":");
@@ -77,10 +77,10 @@ export async function onmessage(connection, event) {
     }
 
     if (+segments[0] === actions.messages) {
-      console.log("messages switch");
+      // console.log("messages switch");
       switch (+segments[1]) {
         case actions.messages_send:
-          console.log("send switch");
+          // console.log("send switch");
           result = await messagesSend(data);
           break;
 
@@ -89,7 +89,7 @@ export async function onmessage(connection, event) {
           break;
 
         case actions.messages_get_between:
-          console.log("get between switch");
+          // console.log("get between switch");
           result = await messagesGetBetween(data);
           break;
 
@@ -102,7 +102,11 @@ export async function onmessage(connection, event) {
 
     const response = JSON.stringify({
       query,
-      result,
+      result: {
+        action,
+        data: result,
+      },
+      from,
     });
     connection.socket.send(response);
   } catch (error) {
@@ -110,7 +114,7 @@ export async function onmessage(connection, event) {
     const { code, message } = error;
     const response = JSON.stringify({
       query,
-      error: { code, message },
+      error: { action, code, message },
     });
     connection.socket.send(response);
   }

@@ -16,7 +16,7 @@ export default class Connector {
 		Connector.ws = new WebSocket(this.uri);
 
 		Connector.ws.addEventListener('open', (event) => {
-			console.log('Open', event);
+			// console.log('Open', event);
 		});
 
 		Connector.ws.addEventListener('message', (event) => {
@@ -28,7 +28,7 @@ export default class Connector {
 		});
 
 		Connector.ws.addEventListener('close', (event) => {
-			console.log('Close', event);
+			// console.log('Close', event);
 		});
 
 		instance = this;

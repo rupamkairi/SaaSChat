@@ -1,5 +1,5 @@
-import { config } from "dotenv";
-config();
+import { configDotenv } from "dotenv";
+configDotenv();
 
 import fastify from "fastify";
 import fastifyWebsocket from "@fastify/websocket";

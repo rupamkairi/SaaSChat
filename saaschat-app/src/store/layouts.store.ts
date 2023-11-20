@@ -18,11 +18,13 @@ export const sidebar = writable(LayoutElementSizing.default);
 
 // sidebar.set(LayoutElementSizing.default);
 
+/** 
 sidebar.subscribe((value) => {
 	console.log('Subscribed to sidebar', value);
 });
 
 sidebar.update((value) => value);
+*/
 
 export function sidebarToggle() {
 	sidebar.update((_sidebar) => {
@@ -39,7 +41,7 @@ export function sidebarToggle() {
 // const clients = writable(LayoutElementSizing.default);
 // const chats = writable(LayoutElementSizing.default);
 
-export const infos = writable(LayoutElementSizing.default);
+export const infos = writable(LayoutElementSizing.hidden);
 
 export function infosToggle() {
 	infos.update((_infos) => {

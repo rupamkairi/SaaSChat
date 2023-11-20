@@ -3,7 +3,7 @@
 	import Chats from '../../layouts/chats.layout.svelte';
 	import { getContext } from 'svelte';
 	import { LayoutStateKeys } from '../../store/states';
-	import { sidebar, infos } from '../../store/layouts.state';
+	import { sidebar, infos } from '../../store/layouts.store';
 
 	// const sidebar = getContext(LayoutStateKeys.sidebar);
 	import { connector } from '../../websocket';
@@ -33,7 +33,7 @@
 		<div class="flex-grow flex flex-col">
 			<Chats />
 		</div>
-		<div class="w-96 flex flex-col" class:w-0={!$infos} class:w-16={$infos}>
+		<div class="flex flex-col" class:w-0={!$infos} class:w-96={$infos}>
 			<div class="bg-slate-100 border border-gray-200 flex-grow shadow-inner">
 				<!-- <div>S</div> -->
 			</div>
