@@ -1,9 +1,0 @@
-name: "saaschat_development"
-services:
-  cassandra:
-    image: cassandra
-    container_name: docker-cassandra
-    ports:
-      - 9042:9042
-    volumes:
-      - ./docker-volumes/cassandra-volume:/var/lib/cassandra

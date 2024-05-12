@@ -1,0 +1,35 @@
+{
+  "name": "saaschat-api",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "bun:dev": "bun --watch src/index.js",
+    "nodemon": "nodemon src/index.js",
+    "dev": "npm run nodemon",
+    "start": "node src/index.js",
+    "studio": "drizzle-kit studio"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.5",
+    "bun-types": "latest",
+    "drizzle-kit": "^0.20.2",
+    "pg": "^8.11.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@fastify/cors": "^8.4.0",
+    "@fastify/websocket": "^8.2.0",
+    "@neondatabase/serverless": "^0.6.0",
+    "cassandra-driver": "^4.7.2",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.29.0",
+    "fastify": "^4.23.2",
+    "knex": "^3.0.1",
+    "nodemon": "^3.0.1",
+    "postgres": "^3.4.3",
+    "uuid": "^9.0.1",
+    "uuid-buffer": "^1.0.3"
+  }
+}

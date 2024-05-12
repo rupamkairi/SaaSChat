@@ -22,7 +22,7 @@
 
 <main class="h-screen overflow-hidden">
 	<div class="flex h-full">
-		<div class="flex flex-col" class:w-0={!$sidebar} class:w-16={$sidebar}>
+		<div class="flex flex-col" class:w-16={!$sidebar} class:w-64={$sidebar}>
 			<div class="bg-slate-50 flex-grow shadow-inner">
 				<!-- <div>S</div> -->
 			</div>
