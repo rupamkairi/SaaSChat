@@ -1,3 +1,4 @@
+import { and, eq } from "drizzle-orm";
 import { db } from "../../database";
 import { messages } from "../../schema";
 import { CreateMessageDTO } from "./index";
@@ -5,10 +6,6 @@ import { CreateMessageDTO } from "./index";
 // this is db model does not send or broadcast messages
 export async function createMessage(p: CreateMessageDTO) {
   const _message = p;
-
-  // const [m] = await db.insert(messages).values(_message).returning();
-  // return m;
-
   let m;
   await db.transaction(async (tx) => {
     m = db.insert(messages).values(_message).returning();

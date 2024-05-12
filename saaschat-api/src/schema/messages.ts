@@ -1,8 +1,9 @@
-import { integer, pgTable, serial, text } from "drizzle-orm/pg-core";
+import { integer, pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { chats, users } from "./index";
 
 export const messages = pgTable("messages", {
   id: serial("id").primaryKey(),
+  created_at: timestamp("created_at", { mode: "date" }).defaultNow(),
 
   text: text("text"),
 

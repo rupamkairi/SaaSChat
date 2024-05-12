@@ -11,7 +11,7 @@ export default defineConfig({
     password: "A39iTNQ6p38mmtWO",
     database: "saaschat",
     connectionString:
-      "postgres://postgres.shllqbqehviwuafnwnxx:A39iTNQ6p38mmtWO@aws-0-ap-south-1.pooler.supabase.com:5432/saaschat",
+      "postgres://postgres.shllqbqehviwuafnwnxx:A39iTNQ6p38mmtWO@aws-0-ap-south-1.pooler.supabase.com:5432/postgres?schema=saaschat",
   },
   verbose: true,
   strict: true,

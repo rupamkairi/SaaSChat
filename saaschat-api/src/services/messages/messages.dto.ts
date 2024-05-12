@@ -4,7 +4,9 @@ export type CreateMessageDTO = {
   chat_id: number;
 };
 
-export type FindMessageDTO = {
+export type FindMessagesDTO = {
   user_id: number;
   chat_id: number;
 };
+
+// FindMessage (Single) is not a use case
