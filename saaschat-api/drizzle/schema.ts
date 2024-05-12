@@ -35,15 +35,15 @@ export const users = pgTable("users", {
 	is_guest: boolean("is_guest").default(true),
 });
 
-export const chats_map = pgTable("chats_map", {
-	id: serial("id").primaryKey().notNull(),
-	chat_id: serial("chat_id").references(() => chats.id),
-	user_id: serial("user_id").references(() => users.id),
-});
-
 export const messages = pgTable("messages", {
 	id: serial("id").primaryKey().notNull(),
 	text: text("text"),
 	chat_id: integer("chat_id").references(() => chats.id),
 	user_id: integer("user_id").references(() => users.id),
+});
+
+export const chats_map = pgTable("chats_map", {
+	id: serial("id").primaryKey().notNull(),
+	chat_id: serial("chat_id").references(() => chats.id),
+	user_id: serial("user_id").references(() => users.id),
 });

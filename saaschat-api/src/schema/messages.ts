@@ -7,5 +7,5 @@ export const messages = pgTable("messages", {
   text: text("text"),
 
   chat_id: integer("chat_id").references(() => chats.id),
-  sender: integer("user_id").references(() => users.id),
+  user_id: integer("user_id").references(() => users.id),
 });
