@@ -1,4 +1,4 @@
-import { pgTable, pgEnum, serial, text, foreignKey, boolean, integer } from "drizzle-orm/pg-core"
+import { pgTable, foreignKey, pgEnum, serial, timestamp, text, integer, boolean } from "drizzle-orm/pg-core"
   import { sql } from "drizzle-orm"
 
 export const aal_level = pgEnum("aal_level", ['aal1', 'aal2', 'aal3'])
@@ -10,10 +10,19 @@ export const key_status = pgEnum("key_status", ['default', 'valid', 'invalid', '
 export const key_type = pgEnum("key_type", ['aead-ietf', 'aead-det', 'hmacsha512', 'hmacsha256', 'auth', 'shorthash', 'generichash', 'kdf', 'secretbox', 'secretstream', 'stream_xchacha20'])
 
 
-export const auth = pgTable("auth", {
+export const chats = pgTable("chats", {
 	id: serial("id").primaryKey().notNull(),
-	password: text("password"),
-	username: text("username"),
+	created_at: timestamp("created_at", { mode: 'string' }).defaultNow(),
+	name: text("name"),
+	team_id: integer("team_id").references(() => teams.id),
+});
+
+export const messages = pgTable("messages", {
+	id: serial("id").primaryKey().notNull(),
+	created_at: timestamp("created_at", { mode: 'string' }).defaultNow(),
+	text: text("text"),
+	chat_id: integer("chat_id").references(() => chats.id),
+	user_id: integer("user_id").references(() => users.id),
 });
 
 export const teams = pgTable("teams", {
@@ -21,29 +30,24 @@ export const teams = pgTable("teams", {
 	name: text("name"),
 });
 
-export const chats = pgTable("chats", {
-	id: serial("id").primaryKey().notNull(),
-	name: text("name"),
-});
-
 export const users = pgTable("users", {
 	id: serial("id").primaryKey().notNull(),
-	auth_id: serial("auth_id").references(() => auth.id),
-	team_id: serial("team_id").references(() => teams.id),
+	created_at: timestamp("created_at", { mode: 'string' }).defaultNow(),
 	name: text("name"),
 	email: text("email"),
 	is_guest: boolean("is_guest").default(true),
-});
-
-export const messages = pgTable("messages", {
-	id: serial("id").primaryKey().notNull(),
-	text: text("text"),
-	chat_id: integer("chat_id").references(() => chats.id),
-	user_id: integer("user_id").references(() => users.id),
+	auth_id: integer("auth_id").references(() => auth.id),
+	team_id: integer("team_id").references(() => teams.id),
 });
 
 export const chats_map = pgTable("chats_map", {
 	id: serial("id").primaryKey().notNull(),
-	chat_id: serial("chat_id").references(() => chats.id),
-	user_id: serial("user_id").references(() => users.id),
+	chat_id: integer("chat_id").references(() => chats.id),
+	user_id: integer("user_id").references(() => users.id),
+});
+
+export const auth = pgTable("auth", {
+	id: serial("id").primaryKey().notNull(),
+	password: text("password"),
+	username: text("username"),
 });

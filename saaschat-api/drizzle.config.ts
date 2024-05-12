@@ -9,9 +9,9 @@ export default defineConfig({
     port: 5432,
     user: "postgres.shllqbqehviwuafnwnxx",
     password: "A39iTNQ6p38mmtWO",
-    database: "saaschat",
+    database: "postgres",
     connectionString:
-      "postgres://postgres.shllqbqehviwuafnwnxx:A39iTNQ6p38mmtWO@aws-0-ap-south-1.pooler.supabase.com:5432/postgres?schema=saaschat",
+      "postgres://postgres.shllqbqehviwuafnwnxx:A39iTNQ6p38mmtWO@aws-0-ap-south-1.pooler.supabase.com:5432/postgres",
   },
   verbose: true,
   strict: true,

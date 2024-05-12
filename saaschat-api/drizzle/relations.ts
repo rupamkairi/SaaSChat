@@ -1,24 +1,17 @@
 import { relations } from "drizzle-orm/relations";
-import { auth, users, teams, chats, messages, chats_map } from "./schema";
+import { teams, chats, messages, users, auth, chats_map } from "./schema";
 
-export const usersRelations = relations(users, ({one, many}) => ({
-	auth: one(auth, {
-		fields: [users.auth_id],
-		references: [auth.id]
-	}),
+export const chatsRelations = relations(chats, ({one, many}) => ({
 	team: one(teams, {
-		fields: [users.team_id],
+		fields: [chats.team_id],
 		references: [teams.id]
 	}),
 	messages: many(messages),
 	chats_maps: many(chats_map),
 }));
 
-export const authRelations = relations(auth, ({many}) => ({
-	users: many(users),
-}));
-
 export const teamsRelations = relations(teams, ({many}) => ({
+	chats: many(chats),
 	users: many(users),
 }));
 
@@ -33,9 +26,21 @@ export const messagesRelations = relations(messages, ({one}) => ({
 	}),
 }));
 
-export const chatsRelations = relations(chats, ({many}) => ({
+export const usersRelations = relations(users, ({one, many}) => ({
 	messages: many(messages),
+	auth: one(auth, {
+		fields: [users.auth_id],
+		references: [auth.id]
+	}),
+	team: one(teams, {
+		fields: [users.team_id],
+		references: [teams.id]
+	}),
 	chats_maps: many(chats_map),
+}));
+
+export const authRelations = relations(auth, ({many}) => ({
+	users: many(users),
 }));
 
 export const chats_mapRelations = relations(chats_map, ({one}) => ({
