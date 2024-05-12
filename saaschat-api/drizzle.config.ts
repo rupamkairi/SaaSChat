@@ -10,6 +10,7 @@ export default defineConfig({
     user: "postgres.shllqbqehviwuafnwnxx",
     password: "A39iTNQ6p38mmtWO",
     database: "postgres",
+
     connectionString:
       "postgres://postgres.shllqbqehviwuafnwnxx:A39iTNQ6p38mmtWO@aws-0-ap-south-1.pooler.supabase.com:5432/postgres",
   },

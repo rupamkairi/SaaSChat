@@ -1,4 +1,4 @@
-import { pgTable, pgEnum, serial, text, foreignKey } from "drizzle-orm/pg-core"
+import { pgTable, pgEnum, serial, text, foreignKey, boolean, integer } from "drizzle-orm/pg-core"
   import { sql } from "drizzle-orm"
 
 export const aal_level = pgEnum("aal_level", ['aal1', 'aal2', 'aal3'])
@@ -26,25 +26,24 @@ export const chats = pgTable("chats", {
 	name: text("name"),
 });
 
-export const guests = pgTable("guests", {
-	id: serial("id").primaryKey().notNull(),
-	name: text("name"),
-	email: text("email"),
-	team_id: serial("team_id").notNull().references(() => teams.id),
-});
-
 export const users = pgTable("users", {
 	id: serial("id").primaryKey().notNull(),
-	auth_id: serial("auth_id").notNull().references(() => auth.id),
-	team_id: serial("team_id").notNull().references(() => teams.id),
+	auth_id: serial("auth_id").references(() => auth.id),
+	team_id: serial("team_id").references(() => teams.id),
 	name: text("name"),
 	email: text("email"),
+	is_guest: boolean("is_guest").default(true),
 });
 
 export const chats_map = pgTable("chats_map", {
 	id: serial("id").primaryKey().notNull(),
-	chat_id: serial("chat_id").notNull().references(() => chats.id),
-	team_id: serial("team_id").notNull().references(() => teams.id),
-	user_id: serial("user_id").notNull().references(() => users.id),
-	guest_id: serial("guest_id").notNull().references(() => guests.id),
+	chat_id: serial("chat_id").references(() => chats.id),
+	user_id: serial("user_id").references(() => users.id),
+});
+
+export const messages = pgTable("messages", {
+	id: serial("id").primaryKey().notNull(),
+	text: text("text"),
+	chat_id: integer("chat_id").references(() => chats.id),
+	user_id: integer("user_id").references(() => users.id),
 });
