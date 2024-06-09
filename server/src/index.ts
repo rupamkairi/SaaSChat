@@ -3,6 +3,7 @@ import { exampleCreateMessage } from "./services/messages/messages.post";
 import { teamsRoute } from "./controllers/api/teams";
 import { zMessage } from "./controllers/ws/validate-message";
 import { handleMessage } from "./controllers/ws/handle-message";
+import { config } from "./config";
 
 const api = new Elysia({ prefix: "/api" })
   .get("/", async () => {
@@ -25,4 +26,6 @@ const app = new Elysia().use(api).ws("/ws", {
   },
 });
 
-app.listen(4000);
+app.listen(config.port, () => {
+  console.log(`Server started on http://localhost:${config.port}`);
+});
