@@ -1,8 +1,8 @@
 <script>
 	import Icon from '@iconify/svelte';
-	import { sidebarToggle } from '../store/layouts.store';
-	import { loadMessagesBetween } from '../utils/messages/load';
-	import { USERS } from '../utils/messages';
+	import { sidebarToggle } from '$src/store/layouts.store';
+	import { loadMessagesBetween } from '$src/utils/messages/load';
+	import { USERS } from '$src/utils/messages';
 
 	function handleChangeChat({ sender_id = '' }) {
 		loadMessagesBetween({ receiver_id: USERS.admin, sender_id });

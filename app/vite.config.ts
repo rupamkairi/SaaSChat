@@ -7,5 +7,10 @@ export default defineConfig({
 	server: {
 		port: +config.VITE_PORT!
 	},
+	resolve: {
+		alias: {
+			$src: '/src'
+		}
+	},
 	plugins: [sveltekit()]
 });

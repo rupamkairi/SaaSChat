@@ -1,4 +1,4 @@
-import { connector } from '../../websocket';
+import { Connector } from '$src/websocket/index';
 
 export async function loadMessagesBetween({ receiver_id = '', sender_id = '' }, extras = {}) {
 	try {
@@ -13,7 +13,7 @@ export async function loadMessagesBetween({ receiver_id = '', sender_id = '' }, 
 
 		// console.log('loadMessagesBetween', payload);
 
-		connector.send(payload);
+		Connector.send(payload);
 	} catch (error) {
 		console.log(error);
 	}

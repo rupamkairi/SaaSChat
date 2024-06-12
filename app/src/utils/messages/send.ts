@@ -1,4 +1,4 @@
-import { connector } from '../../websocket';
+import { Connector } from '$src/websocket/index';
 
 export async function sendMessage({ content = '', receiver_id = '', sender_id = '' }) {
 	const payload = {
@@ -12,5 +12,5 @@ export async function sendMessage({ content = '', receiver_id = '', sender_id = 
 
 	console.log(payload);
 
-	connector.send(payload);
+	Connector.send(payload);
 }

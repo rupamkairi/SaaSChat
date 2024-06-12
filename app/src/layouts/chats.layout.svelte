@@ -1,6 +1,6 @@
 <script>
 	import Icon from '@iconify/svelte';
-	import { infosToggle } from '../store/layouts.store';
+	import { infosToggle } from '$src/store/layouts.store';
 </script>
 
 <div class="bg-slate-50 h-screen flex-grow shadow-md flex flex-col">

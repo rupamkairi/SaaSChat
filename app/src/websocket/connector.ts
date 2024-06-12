@@ -1,8 +1,9 @@
 import { onmessage } from './onmessage';
 
 let instance: Connector | null;
-let _nonce = crypto.randomUUID();
-export default class Connector {
+const _nonce = crypto.randomUUID();
+
+export class Connector {
 	uri: string;
 	static ws: WebSocket;
 
@@ -16,10 +17,11 @@ export default class Connector {
 		Connector.ws = new WebSocket(this.uri);
 
 		Connector.ws.addEventListener('open', (event) => {
-			// console.log('Open', event);
+			console.log('Open', event);
 		});
 
 		Connector.ws.addEventListener('message', (event) => {
+			console.log('Open', event);
 			onmessage(event);
 		});
 
@@ -28,7 +30,7 @@ export default class Connector {
 		});
 
 		Connector.ws.addEventListener('close', (event) => {
-			// console.log('Close', event);
+			console.log('Close', event);
 		});
 
 		instance = this;

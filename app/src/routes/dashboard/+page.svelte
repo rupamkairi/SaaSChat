@@ -1,18 +1,18 @@
 <script>
-	import Clients from '../../layouts/clients.layout.svelte';
-	import Chats from '../../layouts/chats.layout.svelte';
+	import Clients from '$src/layouts/clients.layout.svelte';
+	import Chats from '$src/layouts/chats.layout.svelte';
 	import { getContext } from 'svelte';
-	import { LayoutStateKeys } from '../../store/states';
-	import { sidebar, infos } from '../../store/layouts.store';
+	import { LayoutStateKeys } from '$src/store/states';
+	import { sidebar, infos } from '$src/store/layouts.store';
 
 	// const sidebar = getContext(LayoutStateKeys.sidebar);
-	import { connector } from '../../websocket';
+	import { Connector } from '$src/websocket';
 
 	const ping = { action: '0:1' };
 	const heartbeat = { action: '0:2' };
 
-	connector?.ws.addEventListener('open', (event) => {
-		connector?.send(ping);
+	Connector?.ws.addEventListener('open', (event) => {
+		Connector?.send(ping);
 	});
 </script>
 
