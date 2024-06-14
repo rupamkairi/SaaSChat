@@ -1,6 +1,6 @@
 <script>
-	import Clients from '$src/layouts/clients.layout.svelte';
 	import Chats from '$src/layouts/chats.layout.svelte';
+	import Messages from '$src/layouts/messages.layout.svelte';
 	import { getContext } from 'svelte';
 	import { LayoutStateKeys } from '$src/store/states';
 	import { sidebar, infos } from '$src/store/layouts.store';
@@ -28,10 +28,10 @@
 			</div>
 		</div>
 		<div class="w-80 flex flex-col">
-			<Clients />
+			<Chats />
 		</div>
 		<div class="flex-grow flex flex-col">
-			<Chats />
+			<Messages />
 		</div>
 		<div class="flex flex-col" class:w-0={!$infos} class:w-96={$infos}>
 			<div class="bg-slate-100 border border-gray-200 flex-grow shadow-inner">

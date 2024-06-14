@@ -5,8 +5,15 @@ export type CreateMessageDTO = {
 };
 
 export type FindMessagesDTO = {
-  user_id: number;
+  message_id?: number;
   chat_id: number;
+  team_id?: number;
+  user_id?: number;
 };
 
-// FindMessage (Single) is not a use case
+export type FindMessageDTO = {
+  message_id: number;
+  chat_id?: number;
+  team_id?: number;
+  user_id?: number;
+};
