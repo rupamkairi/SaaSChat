@@ -7,24 +7,33 @@
 	import { onMount } from 'svelte';
 	import { messages } from './store/messages.store';
 
+	import { apis } from '$src/constants/apis';
+	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
+	import { teamId } from './config';
+
 	let message = 'Hello World';
 
-	function handleSendMessage() {
-		sendMessage({
-			content: message,
-			receiver_id: USERS.admin,
-			sender_id: USERS.customer2
-		});
-	}
+	// function handleSendMessage() {
+	// 	sendMessage({
+	// 		content: message,
+	// 		receiver_id: USERS.admin,
+	// 		sender_id: USERS.customer2
+	// 	});
+	// }
 
-	onMount(() => {
-		const newMessages = [{ content: 'Hello' }];
-		Connector?.ws.addEventListener('open', (event) => {
-			loadMessagesBetween(
-				{ receiver_id: USERS.admin, sender_id: USERS.customer2 },
-				{ from: 'widget' }
-			);
-		});
+	let teamName = '';
+	onMount(async () => {
+		const { team } = await apiFetch({ api: apis.teams.team(teamId) });
+		console.log(team);
+		teamName = team.name;
+
+		// const newMessages = [{ content: 'Hello' }];
+		// Connector?.ws.addEventListener('open', (event) => {
+		// 	loadMessagesBetween(
+		// 		{ receiver_id: USERS.admin, sender_id: USERS.customer2 },
+		// 		{ from: 'widget' }
+		// 	);
+		// });
 	});
 </script>
 
@@ -43,7 +52,7 @@
 		<div class="w-screen h-screen sm:w-96 sm:h-[40rem]">
 			<div class="h-full w-full flex flex-col rounded shadow overflow-hidden">
 				<div class="p-2 bg-slate-200">
-					<div class="text-xl font-black mt-4">Header</div>
+					<div class="text-xl font-black mt-4">{teamName}</div>
 				</div>
 				<div class="flex-grow p-2 overflow-hidden">
 					<div class="h-full flex flex-col">
@@ -88,9 +97,9 @@
 									bind:value={message}
 								/>
 								<div class="flex flex-col gap-2">
-									<button class="w-8 h-8 pl-1 bg-slate-200 rounded" on:click={handleSendMessage}>
+									<!-- <button class="w-8 h-8 pl-1 bg-slate-200 rounded" on:click={handleSendMessage}>
 										<Icon icon="iconamoon:send-duotone" class="w-6 h-6" />
-									</button>
+									</button> -->
 									<button class="w-6 h-6 pl-1 bg-slate-200 rounded">
 										<Icon icon="iconamoon:attachment" class="w-4 h-4" />
 									</button>

@@ -13,5 +13,5 @@ export async function findTeamById(p: FindTeamDTO) {
     .select()
     .from(teams)
     .where(and(eq(teams.id, p.team_id)));
-  return t;
+  return { team: t };
 }
