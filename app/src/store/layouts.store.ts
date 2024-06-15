@@ -14,7 +14,7 @@ enum LayoutElementSizing {
 	// xl
 }
 
-export const sidebar = writable(LayoutElementSizing.default);
+export const sidebar = writable(LayoutElementSizing.hidden);
 
 // sidebar.set(LayoutElementSizing.default);
 

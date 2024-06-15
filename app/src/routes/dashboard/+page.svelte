@@ -1,11 +1,7 @@
 <script>
 	import Chats from '$src/layouts/chats.layout.svelte';
 	import Messages from '$src/layouts/messages.layout.svelte';
-	import { getContext } from 'svelte';
-	import { LayoutStateKeys } from '$src/store/states';
-	import { sidebar, infos } from '$src/store/layouts.store';
-
-	// const sidebar = getContext(LayoutStateKeys.sidebar);
+	import { infos, sidebar } from '$src/store/layouts.store';
 	import { Connector } from '$src/websocket';
 
 	const ping = { action: '0:1' };

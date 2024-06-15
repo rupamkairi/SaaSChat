@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { onMount, onDestroy } from 'svelte';
 	import { Editor } from '@tiptap/core';
 	import StarterKit from '@tiptap/starter-kit';
+	import { onDestroy, onMount } from 'svelte';
 
 	let element: Element;
 	let editor: Editor;

@@ -12,7 +12,6 @@
 	import MessageBubble from './components/messages/message-bubble.svelte';
 	import Window from './components/window.svelte';
 	import { teamId } from './config';
-	import { messages } from './store/messages.store';
 
 	let teamName = '';
 	onMount(async () => {
@@ -59,8 +58,6 @@
 					<MessageButton text="I have few questions" />
 					<MessageButton text="I'd like to learn about SaaSChat" />
 				</div>
-
-				<div><pre class="text-xs">{JSON.stringify($messages, null, 2)}</pre></div>
 			</svelte:fragment>
 
 			<svelte:fragment slot="message-input">

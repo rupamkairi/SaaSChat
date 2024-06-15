@@ -1,5 +1,4 @@
-import { loadInitialMessages } from '../packages/widget/store/messages.store';
-import { actions } from '../utils/actions';
+import { actions } from '$src/utils/actions';
 
 export function onmessage(event: MessageEvent) {
 	try {
@@ -72,7 +71,9 @@ export function onmessage(event: MessageEvent) {
 
 				case actions.messages_get_between:
 					// console.log('get between switch', data);
-					if (from === 'widget') loadInitialMessages(data);
+					if (from === 'widget') {
+						console.log();
+					}
 					// result = await messagesGetBetween(data);
 					break;
 
