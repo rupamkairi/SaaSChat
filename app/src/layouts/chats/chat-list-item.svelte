@@ -1,15 +1,13 @@
 <script>
 	export let name;
 	export let infos;
-	export let avatarSrc = 'https://placehold.co/64';
+	export let avatarSrc = 'https://placehold.co/48';
 </script>
 
 <div class="flex gap-3 px-3 my-2">
-	<div class="w-16 aspect-square">
-		<img class="rounded-full shadow" src={avatarSrc} alt="" />
-	</div>
-	<button class="pb-2 text-start">
-		<p class="text-sm font-semibold">{name}</p>
+	<img class="w-12 h-12 aspect-square rounded-full shadow" src={avatarSrc} alt="" />
+	<button class="flex-grow pb-2 flex justify-start align-top">
+		<p class="text-sm">{name}</p>
 		<p class="text-xs text-gray-500">{infos}</p>
 	</button>
 </div>

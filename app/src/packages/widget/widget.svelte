@@ -37,10 +37,15 @@
 		<Header headerText={teamName} />
 		<Content>
 			<svelte:fragment>
-				<div>Chat</div>
+				<br />
 
 				<MessageBubbleGroup>
-					<img slot="avatar" class="w-8 h-8 rounded-full shadow" src="https://placehold.co/32" />
+					<img
+						slot="avatar"
+						class="w-8 h-8 rounded-full shadow"
+						src="https://placehold.co/32"
+						alt=""
+					/>
 					<svelte:fragment slot="body">
 						<MessageBubble text={'Lorem ipsum dolor sit amet?'} />
 						<MessageBubble

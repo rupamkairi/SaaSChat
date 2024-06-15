@@ -1,7 +1,19 @@
-<script>
+<script lang="ts">
+	import { QueryClient, createQuery } from '@tanstack/svelte-query';
 	import ChatListItem from './chats/chat-list-item.svelte';
 	import ChatList from './chats/chat-list.svelte';
 	import Header from './chats/header.svelte';
+	import { queryClient } from '$src/components/query-client';
+	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
+	import { apis } from '$src/constants/apis';
+
+	const _chatList = createQuery({
+		queryKey: ['chatList'],
+		queryFn: async () => {
+			const data = await apiFetch({ api: apis.teams.chats(1).index });
+			return data.chats;
+		}
+	});
 </script>
 
 <div class="bg-white border-x h-screen flex-grow shadow-md flex flex-col overflow-scroll">
@@ -9,10 +21,20 @@
 	<div class="my-4 mx-3">
 		<button class="px-4 py-1 bg-white rounded shadow text-sm">Active</button>
 	</div>
-	<ChatList>
-		<ChatListItem
-			name="Customer 1"
-			infos="Lorem ipsum dolor sit consectetur adipisicing doloremque..."
-		/>
-	</ChatList>
+
+	{#if $_chatList.status === 'pending'}
+		<span>Loading...</span>
+	{:else if $_chatList.status === 'error'}
+		<span>Error: {$_chatList.error.message}</span>
+	{:else}
+		<ChatList>
+			{#each $_chatList.data as chat}
+				{#if chat}
+					<ChatListItem name={chat.name} infos="" />
+				{:else}
+					<pre>{JSON.stringify(chat, null, 2)}</pre>
+				{/if}
+			{/each}
+		</ChatList>
+	{/if}
 </div>
