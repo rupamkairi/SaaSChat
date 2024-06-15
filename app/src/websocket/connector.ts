@@ -1,7 +1,7 @@
 import { onmessage } from './onmessage';
 
 let instance: Connector | null;
-const _nonce = crypto.randomUUID();
+let _nonce = crypto.randomUUID();
 
 export class Connector {
 	uri: string;
@@ -21,7 +21,7 @@ export class Connector {
 		});
 
 		Connector.ws.addEventListener('message', (event) => {
-			console.log('Open', event);
+			console.log('Message', event);
 			onmessage(event);
 		});
 
@@ -40,9 +40,10 @@ export class Connector {
 	static send(data: any) {
 		if (!Connector.ws.readyState) return;
 
+		_nonce = crypto.randomUUID();
 		data = {
 			nonce: _nonce,
-			timestamp: new Date().getTime(),
+			timestamp: Date.now(),
 			...data
 		};
 

@@ -1,6 +1,8 @@
 import z from "zod";
 
 export const zMessage = z.object({
-  event: z.string(z.enum(["message_send", "message_receive"])),
-  data: z.object({}),
+  nonce: z.string(),
+  timestamp: z.number(),
+  action: z.string(),
+  from: z.string().optional()
 });

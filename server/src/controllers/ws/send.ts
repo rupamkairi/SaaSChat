@@ -1,12 +1,9 @@
-import { exampleCreateMessage } from "../../services/messages";
-
 export async function sendMessage(data: any) {
   try {
     console.log(data);
-    // const m = await createMessage(data);
-    const m = await exampleCreateMessage();
-    return { status: 0, result: m };
+
+    return {status: 0,};
   } catch (error) {
-    return { status: 1, error };
+    return {status: 1, error};
   }
 }

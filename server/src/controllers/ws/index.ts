@@ -3,17 +3,19 @@ import { zMessage } from "./validate-message";
 import { handleMessage } from "./handle-message";
 
 export const websockets = new Elysia().ws("/ws", {
-  open: (ws) => {
-    console.log("socket_id", ws.id);
+  open: async (ws) => {
+//    console.log("socket_id", ws.id);
   },
-  message(ws, message) {
-    const { success, data } = zMessage.safeParse(message);
+  message: async (ws, message) => {
+//    console.log(message)
+    const { success, data:_message } = zMessage.safeParse(message);
 
     if (!success) {
       return ws.send("Error");
     }
 
-    const result = handleMessage(data);
+    const result = await handleMessage(_message);
+//    console.log(result)
     return ws.send(result);
   },
 });
