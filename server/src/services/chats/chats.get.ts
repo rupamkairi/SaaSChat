@@ -19,6 +19,8 @@ export async function findChatsByUser(p: FindChatsDTO) {
 }
 
 export async function findChatsByTeam(p: FindChatsDTO) {
+  if (!p.team_id) return { chats: [] };
+
   const c = await db.select().from(chats).where(eq(chats.team_id, p.team_id));
   return { chats: c };
 }
@@ -41,7 +43,7 @@ export async function findChatByIdForTeam(p: FindChatDTO) {
       if (fi === -1) acc.users.push(curr.users);
       return acc;
     },
-    { users: [] }
+    { users: [] },
   );
 
   return { chat: c };

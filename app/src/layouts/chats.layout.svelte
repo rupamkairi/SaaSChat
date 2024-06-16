@@ -1,16 +1,17 @@
 <script lang="ts">
-	import { QueryClient, createQuery } from '@tanstack/svelte-query';
+	import { apis } from '$src/constants/apis';
+	import { user_TeamId } from '$src/store/user.store';
+	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
+	import { createQuery } from '@tanstack/svelte-query';
 	import ChatListItem from './chats/chat-list-item.svelte';
 	import ChatList from './chats/chat-list.svelte';
 	import Header from './chats/header.svelte';
-	import { queryClient } from '$src/components/query-client';
-	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
-	import { apis } from '$src/constants/apis';
 
 	const _chatList = createQuery({
-		queryKey: ['chatList'],
+		queryKey: ['chatList', user_TeamId],
 		queryFn: async () => {
-			const data = await apiFetch({ api: apis.teams.chats(1).index });
+			if (!user_TeamId) return [];
+			const data = await apiFetch({ api: apis.teams.chats($user_TeamId).index });
 			return data.chats;
 		}
 	});

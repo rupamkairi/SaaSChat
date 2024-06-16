@@ -1,5 +1,10 @@
 type id = string | number;
 export const apis = {
+	users: {
+		index: '/users',
+		user: (userId: id) => `/users/${userId}`
+	},
+
 	teams: {
 		index: '/teams',
 		team: (teamId: id) => `/teams/${teamId}`,
