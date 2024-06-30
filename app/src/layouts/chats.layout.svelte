@@ -1,19 +1,28 @@
 <script lang="ts">
 	import { apis } from '$src/constants/apis';
-	import { user_TeamId } from '$src/store/user.store';
+	import { userStore } from '$src/store/user.svelte';
 	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
 	import { createQuery } from '@tanstack/svelte-query';
 	import ChatListItem from './chats/chat-list-item.svelte';
 	import ChatList from './chats/chat-list.svelte';
 	import Header from './chats/header.svelte';
+	import { onMount } from 'svelte';
+	import { chatStore } from '$src/store/chats.svelte';
+
+	// console.log(userStore.user.team_id);
+	$inspect(userStore.user.team_id);
 
 	const _chatList = createQuery({
-		queryKey: ['chatList', user_TeamId],
+		queryKey: ['chatList', userStore.user.team_id],
 		queryFn: async () => {
-			if (!user_TeamId) return [];
-			const data = await apiFetch({ api: apis.teams.chats($user_TeamId).index });
+			const data = await apiFetch({ api: apis.teams.chats(userStore.user.team_id).index });
+			chatStore.chats = data.chats;
 			return data.chats;
 		}
+	});
+
+	$effect(() => {
+		$_chatList.refetch();
 	});
 </script>
 
@@ -29,9 +38,9 @@
 		<span>Error: {$_chatList.error.message}</span>
 	{:else}
 		<ChatList>
-			{#each $_chatList.data as chat}
+			{#each chatStore.chats as chat}
 				{#if chat}
-					<ChatListItem name={chat.name} infos="" />
+					<ChatListItem id={chat.id} name={chat.name} infos="" />
 				{:else}
 					<pre>{JSON.stringify(chat, null, 2)}</pre>
 				{/if}

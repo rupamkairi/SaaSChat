@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import { sidebarToggle } from '$src/store/layouts.store';
+	import { sidebarToggle } from '$src/store/layouts.svelte';
 
 	export let title: string = 'Chats';
 </script>

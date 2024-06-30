@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import { infosToggle } from '$src/store/layouts.store';
+	import { infosToggle } from '$src/store/layouts.svelte';
 
 	export let title: string = '';
 </script>

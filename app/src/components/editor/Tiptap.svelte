@@ -10,7 +10,7 @@
 		editor = new Editor({
 			element: element,
 			extensions: [StarterKit],
-			content: '<p>Hello World! 🌍️ </p>',
+			content: '',
 			onTransaction: () => {
 				editor = editor;
 			}

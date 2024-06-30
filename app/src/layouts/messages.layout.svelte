@@ -1,26 +1,30 @@
 <script>
+	import { apis } from '$src/constants/apis';
+	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
+	import { formatTime } from '$src/utils/datetime-helpers';
 	import { createQuery } from '@tanstack/svelte-query';
 	import Header from './messages/header.svelte';
 	import MessageBubble from './messages/message-bubble.svelte';
 	import MessageInput from './messages/message-input.svelte';
 	import MessageList from './messages/message-list.svelte';
-	import MessageSeparator from './messages/message-separator.svelte';
-	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
-	import { apis } from '$src/constants/apis';
-	import { formatTime } from '$src/utils/datetime-helpers';
+	import { chatStore } from '$src/store/chats.svelte';
+	import { userStore } from '$src/store/user.svelte';
+	import { onMount } from 'svelte';
 
-	const user_id = 2,
-		chat_id = 1;
+	// console.log(chatStore.selected_ChatId);
+	$inspect(chatStore.selected_ChatId);
 
 	const _messageList = createQuery({
 		queryKey: ['messageList'],
 		queryFn: async () => {
-			const data = await apiFetch({ api: apis.chats.messages(chat_id).index });
-			return data.messages;
+			const data = await apiFetch({ api: apis.chats.messages(chatStore.selected_ChatId).index });
+			return data.messages ?? [];
 		}
 	});
 
-	console.log($_messageList.data);
+	$effect(() => {
+		$_messageList.refetch();
+	});
 </script>
 
 <div class="bg-slate-50 h-screen flex-grow shadow-md flex flex-col">
@@ -35,7 +39,7 @@
 			<!-- <MessageSeparator text="Yesterday" /> -->
 			{#each $_messageList.data as message}
 				<MessageBubble
-					self={message.user_id === user_id ? true : false}
+					self={message.user_id === userStore.user.id ? true : false}
 					name="John Doe"
 					info={formatTime(message.created_at)}
 					content={message.text}
