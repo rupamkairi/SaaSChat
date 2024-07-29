@@ -1,4 +1,4 @@
-const baseURL = import.meta.env.VITE_API_URL;
+const baseURL = import.meta.env.VITE_SERVER_API_URL;
 
 export type ApiFetchProps = { api: string };
 export async function apiFetch({ api }: ApiFetchProps) {

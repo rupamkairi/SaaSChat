@@ -7,7 +7,7 @@
 	export let avatarSrc = 'https://placehold.co/48';
 
 	function selectChat() {
-		console.log('Chat selected');
+		// console.log('Chat selected');
 		chatStore.selected_ChatId = id;
 	}
 </script>

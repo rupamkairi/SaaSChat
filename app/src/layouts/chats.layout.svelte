@@ -1,16 +1,14 @@
 <script lang="ts">
 	import { apis } from '$src/constants/apis';
+	import { chatStore } from '$src/store/chats.svelte';
 	import { userStore } from '$src/store/user.svelte';
 	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
 	import { createQuery } from '@tanstack/svelte-query';
 	import ChatListItem from './chats/chat-list-item.svelte';
 	import ChatList from './chats/chat-list.svelte';
 	import Header from './chats/header.svelte';
-	import { onMount } from 'svelte';
-	import { chatStore } from '$src/store/chats.svelte';
 
-	// console.log(userStore.user.team_id);
-	$inspect(userStore.user.team_id);
+	$inspect(userStore);
 
 	const _chatList = createQuery({
 		queryKey: ['chatList', userStore.user.team_id],

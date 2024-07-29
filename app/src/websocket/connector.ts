@@ -8,7 +8,7 @@ export class Connector {
 	static ws: WebSocket;
 
 	constructor(uri?: string) {
-		this.uri = uri ?? import.meta.env.VITE_WS_URL;
+		this.uri = uri ?? import.meta.env.VITE_SERVER_WS_URL;
 
 		if (instance instanceof Connector) {
 			return instance;
@@ -42,8 +42,8 @@ export class Connector {
 
 		_nonce = crypto.randomUUID();
 		data = {
-			nonce: _nonce,
 			timestamp: Date.now(),
+			nonce: _nonce,
 			...data
 		};
 

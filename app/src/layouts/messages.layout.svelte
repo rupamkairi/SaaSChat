@@ -1,5 +1,7 @@
 <script>
 	import { apis } from '$src/constants/apis';
+	import { chatStore } from '$src/store/chats.svelte';
+	import { userStore } from '$src/store/user.svelte';
 	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
 	import { formatTime } from '$src/utils/datetime-helpers';
 	import { createQuery } from '@tanstack/svelte-query';
@@ -7,12 +9,8 @@
 	import MessageBubble from './messages/message-bubble.svelte';
 	import MessageInput from './messages/message-input.svelte';
 	import MessageList from './messages/message-list.svelte';
-	import { chatStore } from '$src/store/chats.svelte';
-	import { userStore } from '$src/store/user.svelte';
-	import { onMount } from 'svelte';
 
-	// console.log(chatStore.selected_ChatId);
-	$inspect(chatStore.selected_ChatId);
+	$inspect(chatStore);
 
 	const _messageList = createQuery({
 		queryKey: ['messageList'],

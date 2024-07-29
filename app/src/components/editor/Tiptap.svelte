@@ -5,6 +5,7 @@
 
 	let element: Element;
 	let editor: Editor;
+	export let content;
 
 	onMount(() => {
 		editor = new Editor({
@@ -13,6 +14,8 @@
 			content: '',
 			onTransaction: () => {
 				editor = editor;
+				// content = editor.getJSON();
+				content = editor.getText();
 			}
 		});
 	});

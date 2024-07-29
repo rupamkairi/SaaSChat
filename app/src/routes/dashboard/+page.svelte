@@ -3,7 +3,6 @@
 	import Chats from '$src/layouts/chats.layout.svelte';
 	import Messages from '$src/layouts/messages.layout.svelte';
 	import { authStore } from '$src/store/auth.svelte';
-	import { chatStore } from '$src/store/chats.svelte';
 	import { infos, sidebar } from '$src/store/layouts.svelte';
 	import { userStore } from '$src/store/user.svelte';
 	import { apiFetch } from '$src/utils/api-helpers/api-fetch';
@@ -27,8 +26,6 @@
 		}
 	});
 
-	$inspect(userStore);
-
 	onMount(() => {
 		$_user.refetch();
 	});
@@ -38,7 +35,7 @@
 	<title>Dashboard</title>
 </svelte:head>
 
-<main class="h-screen overflow-hidden">
+<main class="h-screen">
 	<div class="flex h-full">
 		<div class="flex flex-col" class:w-16={!$sidebar} class:w-64={$sidebar}>
 			<div class="bg-slate-50 flex-grow shadow-inner">
