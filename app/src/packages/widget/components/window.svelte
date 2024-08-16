@@ -6,6 +6,8 @@
 	import { apis } from '$src/constants/apis';
 	import Messages from './messages/messages.svelte';
 
+	let { children } = $props();
+
 	const _user = createQuery({
 		queryKey: ['user'],
 		queryFn: async () => {
@@ -28,6 +30,7 @@
 	<div class="w-screen h-screen sm:w-96 sm:h-[40rem]">
 		<div class="h-full w-full flex flex-col rounded shadow overflow-hidden">
 			<slot />
+			<!-- {@render children()} -->
 		</div>
 	</div>
 </div>

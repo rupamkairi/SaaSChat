@@ -27,4 +27,4 @@
 <div
 	class="p-2 text-sm flex-grow rounded border overflow-y-scroll outline-none"
 	bind:this={element}
-/>
+></div>

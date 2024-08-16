@@ -44,9 +44,9 @@
 						<p class="text-center">{userStore.user.name}</p>
 					</div>
 				{:else}
-					<div />
+					<div></div>
 				{/if}
-				<div />
+				<div></div>
 			</div>
 		</div>
 		<div class="w-80 flex flex-col">
