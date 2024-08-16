@@ -16,7 +16,7 @@
 	let teamName = '';
 	onMount(async () => {
 		const { team } = await apiFetch({ api: apis.teams.team(teamId) });
-		console.log(team);
+		// console.log(team);
 		teamName = team.name;
 	});
 </script>
@@ -35,7 +35,7 @@
 	<Window>
 		<Header headerText={teamName} />
 		<Content>
-			<svelte:fragment>
+			<!-- <svelte:fragment>
 				<br />
 
 				<MessageBubbleGroup>
@@ -58,7 +58,7 @@
 					<MessageButton text="I have few questions" />
 					<MessageButton text="I'd like to learn about SaaSChat" />
 				</div>
-			</svelte:fragment>
+			</svelte:fragment> -->
 
 			<svelte:fragment slot="message-input">
 				<MessageInputGroup>

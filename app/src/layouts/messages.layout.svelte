@@ -16,6 +16,7 @@
 		queryKey: ['messageList'],
 		queryFn: async () => {
 			const data = await apiFetch({ api: apis.chats.messages(chatStore.selected_ChatId).index });
+			console.log(data.messages);
 			return data.messages ?? [];
 		}
 	});
@@ -38,7 +39,7 @@
 			{#each $_messageList.data as message}
 				<MessageBubble
 					self={message.user_id === userStore.user.id ? true : false}
-					name="John Doe"
+					name={message.user__name}
 					info={formatTime(message.created_at)}
 					content={message.text}
 				/>

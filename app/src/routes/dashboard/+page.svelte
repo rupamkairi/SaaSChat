@@ -41,7 +41,7 @@
 			<div class="bg-slate-50 flex-grow shadow-inner">
 				{#if userStore.user.id}
 					<div>
-						<p>{userStore.user.name}</p>
+						<p class="text-center">{userStore.user.name}</p>
 					</div>
 				{:else}
 					<div />

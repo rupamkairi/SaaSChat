@@ -18,7 +18,7 @@
 			<span class="text-slate-600 font-bold">{name}</span>
 			<span class="text-slate-400">{info}</span>
 		</p>
-		<div class="bg-slate-300 py-2 px-4 rounded">
+		<div class="bg-slate-300 py-2 px-4 rounded-lg">
 			<p class="text-sm text-gray-500 leading-normal">
 				<span class="text-justify"> {content} </span>
 			</p>

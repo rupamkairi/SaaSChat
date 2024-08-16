@@ -8,9 +8,10 @@
 	setTimeout(() => {
 		authStore.isAuthenticated = true;
 		authStore.auth = { id: 1, user_id: 2 };
+		// authStore.auth = { id: 2, user_id: 3 };
 
 		dashboardState.set(dashboardStatusStates.LOADED);
-	}, 2000);
+	}, 0);
 </script>
 
 <main>
