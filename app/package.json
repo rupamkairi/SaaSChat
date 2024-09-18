@@ -1,0 +1,47 @@
+{
+	"name": "saaschat-app",
+	"version": "0.0.1",
+	"scripts": {
+		"sveltekit:dev": "vite dev --host --port 40000",
+		"dev": "bun run sveltekit:dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"format": "prettier --plugin-search-dir . --write .",
+		"build:widget": "vite -c vite.widget.config.js build"
+	},
+	"devDependencies": {
+		"@iconify/svelte": "^4.0.2",
+		"@sveltejs/adapter-auto": "^3.2.5",
+		"@sveltejs/kit": "^2.5.28",
+		"@types/cookie": "^0.6.0",
+		"@typescript-eslint/eslint-plugin": "^8.6.0",
+		"@typescript-eslint/parser": "^8.6.0",
+		"eslint": "^9.10.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.44.0",
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.6",
+		"svelte": "^5.0.0-next.250",
+		"svelte-check": "^3.8.6",
+		"tslib": "^2.7.0",
+		"typescript": "^5.6.2",
+		"vite": "^5.4.6"
+	},
+	"type": "module",
+	"dependencies": {
+		"@sveltejs/vite-plugin-svelte": "^3.1.2",
+		"@tanstack/svelte-query": "^5.56.2",
+		"@tanstack/svelte-query-devtools": "^5.56.2",
+		"@tiptap/core": "^2.7.1",
+		"@tiptap/pm": "^2.7.1",
+		"@tiptap/starter-kit": "^2.7.1",
+		"autoprefixer": "^10.4.20",
+		"date-fns": "^3.6.0",
+		"postcss": "^8.4.47",
+		"tailwind-merge": "^2.5.2",
+		"tailwindcss": "^3.4.12"
+	}
+}
