@@ -1,5 +1,11 @@
 type id = string | number;
 export const apis = {
+	auth: {
+		login: '/auth/login',
+		logout: '/auth/logout',
+		me: '/auth/me'
+	},
+
 	users: {
 		index: '/users',
 		user: (userId: id) => `/users/${userId}`
