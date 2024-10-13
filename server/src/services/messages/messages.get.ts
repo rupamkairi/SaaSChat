@@ -18,7 +18,8 @@ export async function findMessageByChat(p: FindMessagesDTO) {
     .select({
       ...messages,
       user__name: users.name,
-    })
+      user__is_guest: users.is_guest,
+    } as any)
     .from(messages)
     .where(and(eq(messages.chat_id, p.chat_id)))
     .leftJoin(users, eq(messages.user_id, users.id))

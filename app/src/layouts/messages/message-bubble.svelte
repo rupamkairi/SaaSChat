@@ -2,6 +2,7 @@
 	import { twMerge } from 'tailwind-merge';
 
 	export let self: boolean = false;
+	export let guest: boolean = false;
 	export let name: string;
 	export let info: string;
 	export let avatarSrc: string = 'https://placehold.co/32';
@@ -18,7 +19,13 @@
 			<span class="text-slate-600 font-bold">{name}</span>
 			<span class="text-slate-400">{info}</span>
 		</p>
-		<div class="bg-slate-300 py-2 px-4 rounded-lg">
+		<div
+			class={twMerge(
+				'py-2 px-4 rounded-lg',
+				guest ? 'bg-guest' : 'bg-team border',
+				self && 'bg-self border'
+			)}
+		>
 			<p class="text-sm text-gray-500 leading-normal">
 				<span class="text-justify"> {content} </span>
 			</p>

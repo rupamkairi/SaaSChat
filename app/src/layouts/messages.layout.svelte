@@ -39,6 +39,7 @@
 			{#each $_messageList.data as message}
 				<MessageBubble
 					self={message.user_id === userStore.user.id ? true : false}
+					guest={message.user__is_guest}
 					name={message.user__name}
 					info={formatTime(message.created_at)}
 					content={message.text}

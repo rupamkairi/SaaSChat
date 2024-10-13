@@ -8,6 +8,7 @@ type Message = {
 	user_id: number;
 
 	user__name?: string;
+	user__is_guest?: boolean;
 };
 
 type MessagesStore = {

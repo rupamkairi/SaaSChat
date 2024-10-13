@@ -27,6 +27,8 @@
 	});
 </script>
 
-<div class="p-2 text-sm flex-grow rounded border overflow-y-scroll outline-none">
+<div
+	class="p-2 text-sm flex-grow bg-focused-background rounded border overflow-y-scroll outline-none"
+>
 	<div bind:this={element}></div>
 </div>

@@ -7,9 +7,17 @@
 
 	setTimeout(() => {
 		authStore.isAuthenticated = true;
-		authStore.auth = { id: 1, user_id: 2 };
-		// authStore.auth = { id: 2, user_id: 3 };
 
+		const user_id = localStorage.getItem('user_id');
+		const auth_id = localStorage.getItem('auth_id');
+
+		if (!user_id || !auth_id) {
+			dashboardState.set(dashboardStatusStates.ERROR);
+			return;
+		}
+
+		authStore.auth = { id: +auth_id!, user_id: +user_id! };
+		// authStore.auth = { id: 2, user_id: 3 };
 		dashboardState.set(dashboardStatusStates.LOADED);
 	}, 0);
 </script>

@@ -12,11 +12,14 @@
 		event.preventDefault();
 		console.log(username, password);
 		const url = `${baseURL}${apis.auth.login}`;
-		const { user } = await ky.post(url, { json: { username, password } }).json();
+		const { results } = await ky.post(url, { json: { username, password } }).json();
+		const { user } = results;
+		if (!user) {
+			return;
+		}
 
-		localStorage.setItem('user_id', user.id);
-		localStorage.setItem('auth_id', user.auth_id);
-
+		localStorage.setItem('user_id', user?.id);
+		localStorage.setItem('auth_id', user?.auth_id);
 		goto(routes.dashboard.root);
 	}
 </script>
