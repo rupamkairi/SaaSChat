@@ -6,9 +6,12 @@ let _nonce = crypto.randomUUID();
 export class Connector {
 	uri: string;
 	static ws: WebSocket;
+	static hooks = {
+		open: new Set<Function>()
+	};
 
 	constructor(uri?: string) {
-		this.uri = uri ?? import.meta.env.VITE_SERVER_WS_URL;
+		this.uri = uri ?? import.meta.env.VITE_WS_SERVER_URL;
 
 		if (instance instanceof Connector) {
 			return instance;
@@ -18,10 +21,19 @@ export class Connector {
 
 		Connector.ws.addEventListener('open', (event) => {
 			console.log('Open', event);
+
+			//  Not Working (Keep it - good pattern)
+			Connector.hooks.open.forEach((hook) => {
+				try {
+					hook(event);
+				} catch (error) {
+					console.error('Error executing open hook:', error);
+				}
+			});
 		});
 
 		Connector.ws.addEventListener('message', (event) => {
-			console.log('Message', event);
+			// console.log('Message', event);
 			onmessage(event);
 		});
 
@@ -40,6 +52,7 @@ export class Connector {
 	static send(data: any) {
 		if (!Connector.ws.readyState) return;
 
+		// console.log('send');
 		_nonce = crypto.randomUUID();
 		data = {
 			timestamp: Date.now(),
@@ -48,5 +61,11 @@ export class Connector {
 		};
 
 		Connector.ws.send(JSON.stringify(data));
+	}
+
+	// Not Working
+	static onOpen(callback: Function) {
+		Connector.hooks.open.add(callback);
+		return () => Connector.hooks.open.delete(callback); // Returns cleanup function
 	}
 }

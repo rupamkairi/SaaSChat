@@ -3,6 +3,9 @@ import { actions } from '$src/utils/actions';
 export function onmessage(event: MessageEvent) {
 	try {
 		const { error, result } = JSON.parse(event.data);
+		if (error) console.error(error);
+
+		// console.log(result);
 		const { nonce, action } = result;
 		const segments = action.split(':');
 

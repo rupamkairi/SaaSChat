@@ -7,6 +7,7 @@ export const zMessage = z.object({
   from: z.string().optional(),
   data: z
     .object({
+      guest_id: z.union([z.number(), z.string()]).optional(),
       chat_id: z.union([z.number(), z.string()]).optional(),
       user_id: z.union([z.number(), z.string()]).optional(),
       content: z.any(),

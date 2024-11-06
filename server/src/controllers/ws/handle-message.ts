@@ -23,8 +23,14 @@ export async function handleWSMessage(message: message) {
     }
   }
 
+  // console.log(segments);
   switch (+segments[0]) {
+    case actions.widget_connect:
+      // result = await sendMessage(message);
+      result = { timestamp: Date.now(), nonce, action };
+      break;
     case actions.connect:
+      console.log("connect");
       result = handleConnect(message);
       break;
     case actions.messages:
