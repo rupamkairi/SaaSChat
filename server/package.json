@@ -9,12 +9,12 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.1.1",
-    "axios": "^1.7.7",
+    "axios": "^1.7.9",
     "drizzle-orm": "^0.33.0",
     "elysia": "latest",
     "pg": "^8.13.1",
     "postgres": "^3.4.5",
-    "zod": "^3.23.8"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "bun-types": "latest",
