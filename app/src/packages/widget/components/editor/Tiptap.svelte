@@ -5,14 +5,16 @@
 
 	let element: Element;
 	let editor: Editor;
+	export let content;
 
 	onMount(() => {
 		editor = new Editor({
 			element: element,
 			extensions: [StarterKit],
-			content: '<p>Hello World! 🌍️ </p>',
+			content: '',
 			onTransaction: () => {
 				editor = editor;
+				content = editor.getText();
 			}
 		});
 	});

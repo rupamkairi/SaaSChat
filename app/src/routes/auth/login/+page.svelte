@@ -22,6 +22,13 @@
 		localStorage.setItem('auth_id', user?.auth_id);
 		goto(routes.dashboard.root);
 	}
+
+	function setAsAlice() {
+		(username = 'alice'), (password = 'alice@123');
+	}
+	function setAsBob() {
+		(username = 'bob'), (password = 'bob@123');
+	}
 </script>
 
 <div class="h-screen flex justify-center items-center">
@@ -30,5 +37,10 @@
 		<input class="block" type="text" name="username" placeholder="Username" bind:value={username} />
 		<input class="block" type="text" name="Password" placeholder="Password" bind:value={password} />
 		<button class="block w-full py-2 bg-gray-200 text-center" type="submit">Login</button>
+		<hr />
+		<div class="flex gap-2">
+			<button type="button" on:click={setAsAlice}>alice</button>
+			<button type="button" on:click={setAsBob}>bob</button>
+		</div>
 	</form>
 </div>
